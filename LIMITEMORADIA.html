@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FINANÇAS</title>
+    <style>
+        body {
+            background-color: #bfcba8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #f9e9c3;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            text-align: center;
+        }
+        h2 {
+            font-size: 24px;
+        }
+        input[type="range"] {
+            width: 80%;
+            margin: 20px 0;
+        }
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Moradia</h2>
+        <input type="range" min="0" max="5000" value="2500" class="slider" id="myRange">
+        <p>Limite: R$ <span id="demo">2500</span></p>
+        <a href="orcamento.html" class="btn">Definir</a>
+        <script>
+            var slider = document.getElementById("myRange");
+            var output = document.getElementById("demo");
+            output.innerHTML = slider.value;
+
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+            }
+        </script>
+    </div>
+</body>
+</html>

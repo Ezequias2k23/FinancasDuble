@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despesas</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .hisdespesas_body1 {
+            background: #bfcba8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Header styles */
+        .hisdespesash1 {
+            font-size: 65px;
+            color: black;
+        }
+        .hisdespesash11 {
+            font-size: 45px;
+            color: black;
+        }
+
+        .hisdespesash3 {
+            font-size: 25px;
+            font-style: italic;
+            color: black;
+        }
+
+        /* Container for buttons */
+        .containerhisdespesas {
+            border-radius: 5px;
+            margin: 20px 0;
+            padding: 15px 20px;
+            text-align: center;
+            width: 40%;
+        }
+
+        /* Button styles */
+        .button, .buttonr {
+            background-color: #496E4E;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px 0;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+
+        .button:hover, .buttonr:hover {
+            background-color: #3e8e41;
+            color: black;
+        }
+
+        .button:active, .buttonr:active {
+            background-color: #3e8e41;
+            box-shadow: 0 3px #666;
+            transform: translateY(4px);
+        }
+
+        .img2 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="hisdespesas_body1">
+    <h1 class="hisdespesash1">Despesas</h1>
+    <h1 class="hisdespesash11">Alimentação</h1>
+    <h3 class="hisdespesash3">Histórico dos seus últimos gastos:</h3>
+    <img class="img2" src="imagensFinances/grafico.jpeg" alt="grafico">
+    <div class="containerhisdespesas">
+        <a class="button" href="DESAliTABELA.html">Definir seus gastos</a>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
