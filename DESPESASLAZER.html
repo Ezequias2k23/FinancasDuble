@@ -1,88 +1,216 @@
 <!DOCTYPE html>
 <html lang="eng">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Despesas</title>
-        <link rel="stylesheet" href="style.css">
-        <style>
-            .hisdespesas_body1 {
-            background: #bfcba8;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>finanças</title>
+    <link rel="stylesheet" href="styleE.css">
+</head>
+<body class="hisdespesas_body1">
+    <style>       
+     #chartdiv {
+        width: 50%;
+        height: 450px;
+      }
+      </style>
+    <h1 class="hisdespesash1">Despesas</h1>
+    <h1 class="hisdespesash11">Lazer</h1>
+    <h3 class="hisdespesash3">Histórico dos seus últimos gastos:</h3>
+    
+<div id="chartdiv"></div>
 
-        /* Header styles */
-        .hisdespesash1 {
-            font-size: 65px;
-            color: black;
-        }
-        .hisdespesash11 {
-            font-size: 45px;
-            color: black;
-        }
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
-        .hisdespesash3 {
-            font-size: 25px;
-            font-style: italic;
-            color: black;
-        }
+<!-- Chart code -->
+<script>
+am5.ready(function() {
 
-        /* Container for buttons */
-        .containerhisdespesas {
-            border-radius: 5px;
-            margin: 20px 0;
-            padding: 15px 20px;
-            text-align: center;
-            width: 40%;
-        }
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+var root = am5.Root.new("chartdiv");
 
-        /* Button styles */
-        .button, .buttonr {
-            background-color: #496E4E;
-            color: black;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            margin: 10px 0;
-            padding: 15px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-            width: 100%;
-        }
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
 
-        .button:hover, .buttonr:hover {
-            background-color: #3e8e41;
-            color: black;
-        }
+// Create chart
+// https://www.amcharts.com/docs/v5/charts/xy-chart/
+var chart = root.container.children.push(
+  am5xy.XYChart.new(root, {
+    panX: true,
+    panY: true,
+    wheelX: "panX",
+    wheelY: "zoomX",
+    layout: root.verticalLayout,
+  pinchZoomX:true
+  })
+);
 
-        .button:active, .buttonr:active {
-            background-color: #3e8e41;
-            box-shadow: 0 3px #666;
-            transform: translateY(4px);
-        }
+// Add cursor
+// https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
+var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
+  behavior: "none"
+}));
+cursor.lineY.set("visible", false);
 
-        .img2 {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        </style>
-    </head>
-    <body class="hisdespesas_body1">
-<h1 class="hisdespesash1">Despesas</h1>
-<h1 class="hisdespesash11">Lazer</h1><br>
-<h3 class="hisdespesash3">Histórico dos seus últimos gastos:</h3>
-<img class="img2" src="imagensFinances/grafico.jpeg" alt="grafico" >
-<div class="containerhisdespesas">
-    <br><br>
-    <li><a class="button" href="DESLazTABELA.html">Definir seus gastos</a></li>
+// The data
+var data = [
+  {
+    year: "Segunda",
+    italy: 1,
+    germany: 5,
+    uk: 3,
+    brazil: 4,
+  },
+  {
+    year: "terça",
+    italy: 1,
+    germany: 2,
+    uk: 6,
+    brazil: 4,
+  },
+  {
+    year: "quarta",
+    italy: 2,
+    germany: 3,
+    uk: 1,
+    brazil: 4,
+  },
+  {
+    year: "quinta",
+    italy: 3,
+    germany: 4,
+    uk: 1,
+    brazil: 4,
+  },
+  {
+    year: "sexta",
+    italy: 5,
+    germany: 1,
+    uk: 2,
+    brazil: 4,
+  },
+  
+];
+
+// Create axes
+// https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+var xRenderer = am5xy.AxisRendererX.new(root, {});
+xRenderer.grid.template.set("location", 0.5);
+xRenderer.labels.template.setAll({
+  location: 0.5,
+  multiLocation: 0.5
+});
+
+var xAxis = chart.xAxes.push(
+  am5xy.CategoryAxis.new(root, {
+    categoryField: "year",
+    renderer: xRenderer,
+    tooltip: am5.Tooltip.new(root, {})
+  })
+);
+
+xAxis.data.setAll(data);
+
+var yAxis = chart.yAxes.push(
+  am5xy.ValueAxis.new(root, {
+    maxPrecision: 0,
+    renderer: am5xy.AxisRendererY.new(root, {
+      inversed: true
+    })
+  })
+);
+
+// Add series
+// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+
+function createSeries(name, field) {
+  var series = chart.series.push(
+    am5xy.LineSeries.new(root, {
+      name: name,
+      xAxis: xAxis,
+      yAxis: yAxis,
+      valueYField: field,
+      categoryXField: "year",
+      tooltip: am5.Tooltip.new(root, {
+        pointerOrientation: "horizontal",
+        labelText: "[bold]{name}[/]\n{categoryX}: {valueY}"
+      })
+    })
+  );
+
+
+  series.bullets.push(function() {
+    return am5.Bullet.new(root, {
+      sprite: am5.Circle.new(root, {
+        radius: 5,
+        fill: series.get("fill")
+      })
+    });
+  });
+
+  // create hover state for series and for mainContainer, so that when series is hovered,
+  // the state would be passed down to the strokes which are in mainContainer.
+  series.set("setStateOnChildren", true);
+  series.states.create("hover", {});
+
+  series.mainContainer.set("setStateOnChildren", true);
+  series.mainContainer.states.create("hover", {});
+
+  series.strokes.template.states.create("hover", {
+    strokeWidth: 4
+  });
+
+  series.data.setAll(data);
+  series.appear(1000);
+}
+
+createSeries("Semana1", "italy");
+createSeries("Semana2", "germany");
+createSeries("Semana3", "uk");
+createSeries("Semana4", "brazil");
+
+// Add scrollbar
+// https://www.amcharts.com/docs/v5/charts/xy-chart/scrollbars/
+chart.set("scrollbarX", am5.Scrollbar.new(root, {
+  orientation: "horizontal",
+  marginBottom: 20
+}));
+
+var legend = chart.children.push(
+  am5.Legend.new(root, {
+    centerX: am5.p50,
+    x: am5.p50
+  })
+);
+
+// Make series change state when legend item is hovered
+legend.itemContainers.template.states.create("hover", {});
+
+legend.itemContainers.template.events.on("pointerover", function(e) {
+  e.target.dataItem.dataContext.hover();
+});
+legend.itemContainers.template.events.on("pointerout", function(e) {
+  e.target.dataItem.dataContext.unhover();
+});
+
+legend.data.setAll(chart.series.values);
+
+// Make stuff animate on load
+// https://www.amcharts.com/docs/v5/concepts/animations/
+chart.appear(1000, 100);
+
+}); // end am5.ready()
+</script>
+          
+    <div class="containerhisdespesas">
+        <a class="button" href="DESLazTABELA.html">Definir seus gastos</a>
+    </div>
 </div>
-    </body>
-    <script src="script.js"></script>
+</body>
+<script src="script.js"></script>
 </html>
