@@ -17,7 +17,7 @@
 }
 
 .containerLOGIN {
-    width: 40%; /* Aumentei a largura para melhor acomodar o conteúdo */
+    width: 65%; /* Aumentei a largura para melhor acomodar o conteúdo */
     background: #f9e9c3;
     padding: 15px;
     border-radius: 10px;
@@ -32,9 +32,9 @@
 
 .input1[type="email"],
 .input1[type="password"] {
-    width: 96%;
+    width: 86%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 5px;
     border: 1px solid black;
     border-radius: 5px;
     background-color: #8ca283;
@@ -43,13 +43,18 @@
 }
 
 .button1 {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     background-color: #496E4E;
     color: black;
     border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+    margin-top:3px;
 }
 
 .button1:hover {
@@ -63,7 +68,7 @@
 }
 
 .A1 {
-    font-size: 17px;
+    font-size: 12px;
     color: black;
     text-decoration: none;
 }
@@ -71,6 +76,7 @@
 .terms a {
     color: black;
     text-decoration: none;
+    font-size: 12px;
 }
 
 .bodyCRIARCONTA {
