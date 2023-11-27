@@ -6,7 +6,40 @@
     <title>Dados Pessoais - Visualização</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #bfcba8;">
+
+    <style>
+        .data-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="password"] {
+            width: 300px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid black;
+            margin-bottom: 20px;
+            background-color: white; /* Adicionando esta linha para definir o fundo branco */
+            text-align: center;
+        }
+
+        input[type="text"]::after,
+        input[type="date"]::after,
+        input[type="password"]::after {
+            content: '*';
+            color: red;
+            padding-left: 5px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+
     <h1>Dados Pessoais</h1>
     <div class="data-container">
         <div>
