@@ -224,6 +224,7 @@ label {
     font-size: 30px;
     margin: 0;
     color: black;
+    margin-left: 35px;
 }
 
 .p4 {
@@ -231,6 +232,7 @@ label {
     margin: 15px 0;
     font-size: 25px;
     color: black;
+    margin-left: 28px;
 }
 
 .menu4 {
@@ -252,7 +254,8 @@ label {
     text-align: center;
     text-decoration: none;
     display: block;
-    width: 350px; /* ou qualquer valor desejado para a largura dos botões */
+    width: 271px;
+    margin-right: 21px;
 }
 
 .menu-button4:hover {
