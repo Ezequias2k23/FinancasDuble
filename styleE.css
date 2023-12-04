@@ -35,7 +35,7 @@
     width: 90%;
     padding: 10px;
     margin: 5px;
-    margin-ringt:7px;
+    margin-right:7px;
     border: 1px solid black;
     border-radius: 5px;
     background-color: #8ca283;
@@ -81,65 +81,6 @@
 }
 .button1:hover {
     background-color: #345038; /* Ajustei a cor de fundo no hover */
-}
-
-.body3 {
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    background: #bfcba8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.container3 {
-    width: 35%;
-    background-color: #f9e9c3;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.h3 {
-    margin: 0;
-    margin-bottom: 20px;
-    color: black;
-}
-
-.form-group3 {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    text-align: left;
-    margin-bottom: 5px;
-    color: black;
-}
-
-.input3[type="email"] {
-    width: 96%;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    color: black; /* Corrigido a cor do texto para preto */
-}
-
-.button3 {
-    background-color: #496E4E;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.button3:hover {
-    background-color: #345038;
 }
 .body4 {
     background: #bfcba8;
@@ -438,40 +379,6 @@ input[type="button"] {
     font-weight: bold;
 }
 
-.despesas_body17 {
-    background: #bfcba8;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
-
-/* Header styles */
-.despesash17 {
-    font-size: 55px;
-    color: black;
-    margin-bottom:22px;
-}
-.despesash37 {
-    font-size: 20px;
-    font-style: italic;
-    color: black;
-    margin-top:1px;
-}
-
-/* Container for buttons */
-.containerdespesas7 {
-    border-radius: 5px;
-    margin: 20px 0;
-    padding: 10px 15px;
-    text-align: center;
-    width: 280px;
-    padding-right: 50px;
-    background-color: #f9e9c3;
-}
-
 /* Button styles */
 .button .buttonr {
     background-color: #496E4E;
@@ -604,3 +511,4 @@ input[type="button"] {
     padding: 5px; /* Adjust padding as needed */
     box-sizing: border-box; /* Include padding and border in the width and height */
     resize: none;
+}

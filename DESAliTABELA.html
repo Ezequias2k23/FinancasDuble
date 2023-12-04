@@ -4,10 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finanças</title>
-    <link rel="stylesheet" href="styleE.css">
+    <link rel="stylesheet" href="styleE.s">
 </head>
 <body class="bodyTable">
-    <h1>ALIMENTAÇÃO</h1>
+    <style>
+        .bodyTable {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #bfcba8;
+            margin: 0; /* Removido a margem para evitar espaçamento extra */
+        }
+
+        .tabelaFaculdade {
+            width: 100%;
+            max-width: 800px; /* Adicionado uma largura máxima para evitar que a tabela fique muito larga */
+            margin-top: 20px;
+        }
+
+        .thTabela {
+            height: 40px;
+            border: 1px solid #3e8e41;
+        }
+
+        .tdTablea {
+            border: 1px solid #3e8e41;
+        }
+
+        .tab {
+            padding: 5px;
+            margin: 5px;
+            height: auto; /* Ajustado para altura automática */
+        }
+
+        /* Ajustes para textarea */
+        .tabelaFaculdade textarea {
+            width: calc(100% - 12px); /* Subtraindo a largura do padding e da borda para evitar overflow */
+            height: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            resize: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            /* Adaptações para dispositivos menores */
+            .tabelaFaculdade {
+                margin-top: 10px;
+            }
+
+            .thTabela,
+            .tdTablea {
+                font-size: 14px;
+            }
+
+            .tab {
+                padding: 2px;
+                margin: 2px;
+            }
+        }
+    </style>
+    <h1>Alimentação</h1>
     <table class="tabelaFaculdade">
         <tr class="trCabecalho">
             <th class="thTabela">Segunda</th>

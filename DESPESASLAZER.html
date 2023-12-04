@@ -1,29 +1,108 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>finanças</title>
-    <link rel="stylesheet" href="styleE.css">
+    <title>Finanças</title>
+    <link rel="stylesheet">
+    <style>
+        body {
+            background-color: #bfcba8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .hisdespesas_body1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Header styles */
+        .hisdespesash1 {
+            font-size: 30px;
+            color: black;
+        }
+
+        .hisdespesash11 {
+            font-size: 25px;
+            color: black;
+        }
+
+        .hisdespesash3 {
+            font-size: 18px;
+            font-style: italic;
+            color: black;
+        }
+
+        /* Container for buttons */
+        .containerhisdespesas {
+            background-color: #f9e9c3;
+            border-radius: 15px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 420px;
+        }
+
+        /* Button styles */
+        .button,
+        .buttonr {
+
+            background-color: #496E4E;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px 0;
+            padding: 9px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+
+        .button:hover,
+        .buttonr:hover {
+            background-color: #3e8e41;
+            color: black;
+        }
+
+        .button:active,
+        .buttonr:active {
+            background-color: #3e8e41;
+            box-shadow: 0 3px #666;
+            transform: translateY(4px);
+        }
+
+        /* Chart styles */
+        #chartdiv {
+            width: 100%; /* Ajustado para ocupar 100% da largura */
+            height: 300px; /* Altura ajustada */
+        }
+    </style>
 </head>
+
 <body class="hisdespesas_body1">
-    <style>       
-     #chartdiv {
-        width: 50%;
-        height: 450px;
-      }
-      </style>
     <h1 class="hisdespesash1">Despesas</h1>
     <h1 class="hisdespesash11">Lazer</h1>
     <h3 class="hisdespesash3">Histórico dos seus últimos gastos:</h3>
-    
-<div id="chartdiv"></div>
 
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <div id="chartdiv"></div>
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
-<!-- Chart code -->
+    <!-- Chart code -->
 <script>
 am5.ready(function() {
 

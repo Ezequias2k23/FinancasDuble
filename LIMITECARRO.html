@@ -11,24 +11,28 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
+    
         .container {
-            padding: 100%;
             background-color: #f9e9c3;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 30%;
+            width: 80%; /* Tamanho ajustado para torná-lo responsivo */
+            max-width: 400px; /* Largura máxima para dispositivos pequenos */
             text-align: center;
         }
+    
         h2 {
             font-size: 24px;
-            color: black;
         }
+    
         input[type="range"] {
             width: 80%;
             margin: 20px 0;
         }
+    
         .btn {
             background-color: #4CAF50;
             border: none;
@@ -43,13 +47,14 @@
             border-radius: 5px;
         }
     </style>
+    
 </head>
 <body>
     <div class="container">
         <h2>Carro</h2>
         <input type="range" min="0" max="5000" value="2500" class="slider" id="myRange">
         <p>Limite: R$ <span id="demo">2500</span></p>
-        <a href="ORCAMENTO.html" class="btn">Definir</a>
+        <a href="orcamento.html" class="btn">Definir</a>
         <script>
             var slider = document.getElementById("myRange");
             var output = document.getElementById("demo");

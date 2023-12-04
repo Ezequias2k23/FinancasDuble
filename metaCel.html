@@ -14,42 +14,42 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #bfcba8;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             text-align: center;
-            font-size: 22px; /* Aumentando a fonte em 10% */
+            font-size: 1rem; /* Ajustando a fonte para ser responsiva */
         }
 
         #container {
             text-align: center;
+            max-width: 600px; /* Definindo a largura máxima para melhor visualização em telas pequenas */
+            margin: 0 auto; /* Centralizando o conteúdo */
+            padding: 0 10px; /* Adicionando um pouco de espaço nas laterais */
         }
 
         input {
-            width: 110%;
-            margin-top: 11px; /* Ajustando a margem para manter a proporção com o aumento da fonte */
+            width: 100%;
+            margin-top: 11px;
             border-radius: 5px;
             padding: 8px;
             box-sizing: border-box;
-            width: 110%; /* Aumentando a largura em 10% */
             text-align: right;
         }
 
         label {
-            width: 110%;
+            width: 100%;
             text-align: left;
             display: block;
-            margin-top: 11px; /* Ajustando a margem para manter a proporção com o aumento da fonte */
+            margin-top: 11px;
         }
 
         button {
             border-radius: 5px;
-            width: 110%;
-            margin-top: 42px; /* Ajustando a margem para manter a proporção com o aumento da fonte e mais 20px abaixo */
-            padding: 11px; /* Ajustando o padding para manter a proporção com o aumento da fonte */
+            width: 100%;
+            margin-top: 20px;
+            padding: 11px;
             background-color: green;
             color: white;
             border: none;
@@ -57,8 +57,13 @@
         }
 
         #valor-atual {
-            margin-top: 11px; /* Adicionando margem para manter a proporção com o aumento da fonte */
+            margin-top: 11px;
             font-weight: bold;
+        }
+
+        #chartdiv {
+            width: 100%;
+            height: 400px;
         }
     </style>
 </head>
