@@ -2,8 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.1">
-    <!-- Aumentando a escala para 1.1 para aumentar todos os itens em cerca de 10% -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Metas</title>
     <style>
         body {
@@ -25,31 +24,37 @@
         }
 
         input {
-            width: 110%;
-            margin-top: 11px; /* Ajustando a margem para manter a proporção com o aumento da fonte */
+            width: 90%; /* Reduzindo a largura em telas menores */
+            margin-top: 11px;
             border-radius: 5px;
             padding: 8px;
             box-sizing: border-box;
-            width: 110%; /* Aumentando a largura em 10% */
             text-align: right;
         }
 
         label {
-            width: 110%;
+            width: 90%;
             text-align: left;
             display: block;
-            margin-top: 11px; /* Ajustando a margem para manter a proporção com o aumento da fonte */
+            margin-top: 11px;
         }
 
         button {
             border-radius: 5px;
-            width: 110%;
-            margin-top: 22px; /* Ajustando a margem para manter a proporção com o aumento da fonte */
-            padding: 11px; /* Ajustando o padding para manter a proporção com o aumento da fonte */
+            width: 90%;
+            margin-top: 22px;
+            padding: 11px;
             background-color: green;
             color: white;
             border: none;
             cursor: pointer;
+        }
+
+        @media only screen and (min-width: 600px) {
+            /* Ajustes para telas maiores que 600px de largura */
+            input, label, button {
+                width: 50%; /* Reduz a largura em telas maiores */
+            }
         }
     </style>
 </head>

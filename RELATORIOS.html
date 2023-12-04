@@ -6,6 +6,87 @@
     <title>Relatório</title>
     <link rel="stylesheet" href="styleE.css">
 </head>
+<style>
+    .bodyrelatorio {
+        background: #bfcba8;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    /* Estilos para o cabeçalho */
+    .relatorioh1 {
+        text-align: center;
+        font-size: 36px;
+        color: black;
+    }
+
+    /* Estilos para a área de texto do dia */
+    .day {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 100%; /* Alterado para ocupar 100% da largura em telas pequenas */
+        text-align: center;
+    }
+
+    textarea {
+        width: 100%;
+        height: 80px;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    .relatorioh3 {
+        font-size: 18px;
+        font-style: italic;
+        color: black;
+        margin: 0;
+    }
+
+    .containerrelatorio {
+        margin: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        text-align: center;
+        background-color: #f9e9c3;
+        border-radius: 5px;
+    }
+
+    .buttonr {
+        background-color: #496E4E;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 10px 20px;
+        margin: 10px;
+    }
+
+    .buttonr:hover {
+        background-color: #345038;
+    }
+
+    /* Adicionando regras de mídia para ajustar em telas menores */
+    @media only screen and (max-width: 600px) {
+        .day {
+            width: 100%; /* Ocupa 100% da largura em telas menores */
+        }
+
+        textarea {
+            width: 100%;
+        }
+    }
+</style>
 <body class="bodyrelatorio">
     <header>
         <h1 class="relatorioh1">Relatório</h1>
