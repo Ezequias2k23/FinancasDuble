@@ -230,8 +230,8 @@ label {
 }
 
 textarea {
-    width: 90%;
-    height: 150px;
+    width: 54%;
+    height: 40px;
     padding: 10px;
     border: 1px solid black;
     border-radius: 5px;
@@ -450,14 +450,15 @@ input[type="button"] {
 
 /* Header styles */
 .despesash17 {
-    font-size: 65px;
+    font-size: 55px;
     color: black;
+    margin-bottom:22px;
 }
-
 .despesash37 {
-    font-size: 25px;
+    font-size: 20px;
     font-style: italic;
     color: black;
+    margin-top:1px;
 }
 
 /* Container for buttons */
@@ -466,7 +467,7 @@ input[type="button"] {
     margin: 20px 0;
     padding: 10px 15px;
     text-align: center;
-    width: 800px;
+    width: 280px;
     padding-right: 50px;
     background-color: #f9e9c3;
 }
@@ -596,3 +597,10 @@ input[type="button"] {
     height: -40px;
     width: -40px
 }
+/* Adjust the textarea styles for better fit within table cells */
+.tabelaFaculdade textarea {
+    width: 100%; /* Fill the entire width of the cell */
+    height: 100%; /* Fill the entire height of the cell */
+    padding: 5px; /* Adjust padding as needed */
+    box-sizing: border-box; /* Include padding and border in the width and height */
+    resize: none;
