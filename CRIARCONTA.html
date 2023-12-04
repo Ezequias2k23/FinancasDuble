@@ -4,12 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FINANÇAS</title>
-    <link rel="stylesheet" href="styleE.css">
+    <link rel="stylesheet">
 </head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #bfcba8;
+    }
+
+    .container2 {
+        background-color: #f9e9c3;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%; /* Tamanho ajustado para torná-lo responsivo */
+        text-align: center;
+        max-width: 400px; /* Largura máxima para dispositivos pequenos */
+    }
+
+    .container2 h2 {
+        margin: 0;
+        padding: 15px 0;
+        background-color: #496E4E;
+        color: black;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .form-group2 {
+        margin-bottom: 15px;
+    }
+
+    .form-group2 label {
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+        margin-left: 13px;
+        color: black;
+    }
+
+    .form-group2 input {
+        width: calc(100% - 20px); /* Largura total menos 20px de margem direita */
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 0 0 4px 4px;
+    }
+
+    .btn2 {
+        margin-top: 16px;
+        background-color: #496E4E;
+        color: black;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
 <body class="bodyCRIARCONTA">
     <div class="container2">
         <h2 class="FONTE">Registro de Novo Usuário</h2>
-        <form action="MENU.html">
+        <form action="MENU.html" class="bodybody">
             <div class="form-group2">
                 <label for="nome2">Nome:</label>
                 <input type="text" id="nome2" name="nome2" required>
