@@ -1,36 +1,70 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dados Pessoais</title>
-    <link rel="stylesheet" href="styleE.css">
+    <style>
+        body {
+            background-color: #c8e6c9; /* Fundo verde abacate claro */
+            font-family: Arial, sans-serif; /* Fonte clássica */
+        }
+        .form-container {
+            background-color: #fffaf0; /* Caixa creme de fundo */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px; /* Dimensionada para ser responsiva */
+            margin: 0 auto; /* Centraliza horizontalmente */
+        }
+        /* Estilos adicionais para os elementos do formulário */
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
-<body class="bodycontas22">
-    <h1 class="centered">Dados Pessoais</h1>
+<body>
+    <h1 style="text-align: center;">Dados Pessoais</h1>
     <div class="form-container">
         <div>
-            <label for="nome-completo">Nome Completo:</label><br>
+            <label for="nome-completo">Nome Completo:</label>
             <input type="text" id="nome-completo" name="nome-completo" required>
         </div>
         <div>
-            <label for="cep">CEP:</label><br>
+            <label for="cep">CEP:</label>
             <input type="text" id="cep" name="cep" required>
         </div>
         <div>
-            <label for="cpf-cnpj">CPF/CNPJ:</label><br>
+            <label for="cpf-cnpj">CPF/CNPJ:</label>
             <input type="text" id="cpf-cnpj" name="cpf-cnpj" required>
         </div>
         <div>
-            <label for="data-nascimento">Data de Nascimento:</label><br>
+            <label for="data-nascimento">Data de Nascimento:</label>
             <input type="date" id="data-nascimento" name="data-nascimento" required>
         </div>
         <div>
-            <label for="senha-instituicao">Senha da Instituição:</label><br>
+            <label for="senha-instituicao">Senha da Instituição:</label>
             <input type="password" id="senha-instituicao" name="senha-instituicao" required>
         </div>
         <div>
-            <label for="conta-agencia-banco">Nº Conta/Agência/Banco:</label><br>
+            <label for="conta-agencia-banco">Nº Conta/Agência/Banco:</label>
             <input type="text" id="conta-agencia-banco" name="conta-agencia-banco" required>
         </div>
         <div>
@@ -38,5 +72,4 @@
         </div>
     </div>
 </body>
-<script src="script.js"></script>
 </html>
