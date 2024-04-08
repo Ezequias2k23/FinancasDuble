@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FINANÇAS</title>
-    <link rel="stylesheet" href="styleE.css">
+    <style>
+        body {
+            background-color: #d1d88b; /* Fundo verde abacate */
+            font-family: Arial, sans-serif; /* Fonte clássica */
+            margin: 0; /* Remover margens padrão */
+            padding: 0; /* Remover preenchimento padrão */
+        }
+
+        .body-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: white; /* Cor do título */
+        }
+
+        .icon-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: 10px;
+            width: 150px; /* Tamanho igual para todos os quadradinhos */
+            background-color: white; /* Caixa branca de fundo */
+        }
+
+        .icon-item img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        .icon-item p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .last-icon-item {
+            margin-top: 20px; /* Espaço abaixo do último quadradinho */
+        }
+    </style>
 </head>
+
 <body class="body-container">
     <h1 class="title">Contas</h1>
 
@@ -34,7 +92,7 @@
                 <p>Ver meus dados/modificar</p>
             </div>
 
-            <div class="icon-item">
+            <div class="icon-item last-icon-item">
                 <a href="DADOSDASCONTAS.html">
                     <img src="IMAGENS/picpay.png" alt="Foto picpay">
                 </a>
@@ -54,4 +112,8 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
+
+
+
