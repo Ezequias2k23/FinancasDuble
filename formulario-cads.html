@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Despesas</title>
+    <style>
+        /* CSS para a página de formulário */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .form-heading {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-input[type="number"] {
+            -moz-appearance: textfield; /* Remove spinner arrows in Firefox */
+        }
+
+        .form-input[type="date"] {
+            /* Styles for date input */
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-button:hover {
+            background-color: #45A049;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1 class="form-heading">Cadastro de Despesas</h1>
+        <form id="expense-form">
+            <label for="descricao" class="form-label">Descrição da Despesa:</label>
+            <input type="text" id="descricao" name="descricao" class="form-input" required>
+
+            <label for="valor" class="form-label">Valor:</label>
+            <input type="number" id="valor" name="valor" class="form-input" step="0.01" required>
+
+            <label for="data" class="form-label">Data da Despesa:</label>
+            <input type="date" id="data" name="data" class="form-input" required>
+
+            <label for="tipo" class="form-label">Tipo:</label>
+            <select id="tipo" name="tipo" class="form-input" required>
+                <option value="" disabled selected>Selecione um tipo</option>
+                <option value="alimentacao">Alimentação</option>
+                <option value="transporte">Transporte</option>
+                <option value="saude">Saúde</option>
+                <option value="outros">Outros</option>
+            </select>
+
+            <button type="submit" class="form-button">Cadastrar Despesa</button>
+        </form>
+    </div>
+    <script>
+        // Define the current date as the default value for the date input
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateInput = document.getElementById('data');
+            const today = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+            dateInput.value = today;
+        });
+
+        // Redirect to DESPESAS.html on form submission
+        document.getElementById('expense-form').addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent the default form submission
+            window.location.href = 'DESPESAS.html'; // Redirect to DESPESAS.html
+        });
+    </script>
+</body>
+</html>

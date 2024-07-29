@@ -1,3 +1,4 @@
+//aba configurações
 const languageButton = document.getElementById("languageButton");
         const notificationButton = document.getElementById("notificationButton");
 
@@ -24,4 +25,4 @@ const languageButton = document.getElementById("languageButton");
                 }
             });
         });
-        
+//fim aba configurações
