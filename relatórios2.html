@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios</title>
+    <style>
+        body {
+            background-color: #BFC9A8;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RELATÓRIOS</h1>
+        <label for="descricao">DESCRIÇÃO:</label>
+        <input type="text" id="descricao" name="descricao">
+        <label for="valor">VALOR:</label>
+        <input type="text" id="valor" name="valor">
+        <label for="data">DATA:</label>
+        <input type="text" id="data" name="data">
+        <label for="tipo">TIPO:</label>
+        <select id="tipo" name="tipo">
+            <option value="receita">Receita</option>
+            <option value="despesa">Despesa</option>
+        </select>
+        <button onclick="cadastrar()">CADASTRAR</button>
+        <p>Clique aqui para cadastrar sua despesa </p>
+    </div>
+
+    <script>
+        function cadastrar() {
+            // Implement your JavaScript logic here
+            // For example, send data to a server or perform validation
+            alert("Cadastro realizado com sucesso!");
+        }
+    </script>
+</body>
+</html>
