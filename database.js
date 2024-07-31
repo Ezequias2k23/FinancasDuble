@@ -1,17 +1,16 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
 
-// Configurações do Firebase
+// Configuração do Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyAMeEWUP4Lbmq3z-90Y17LTE2sRysmXCfU",
-    authDomain: "financas-d65a0.firebaseapp.com",
-    projectId: "financas-d65a0",
-    storageBucket: "financas-d65a0.appspot.com",
-    messagingSenderId: "631504271011",
-    appId: "1:631504271011:web:e417c102988833c8fa3116",
-    measurementId: "G-GF5CYN1QSZ"
+    apiKey: "AIzaSyBs0xzJStSGuUWM1biyyMGTWkaJEzvchLE",
+    authDomain: "projetofinances.firebaseapp.com",
+    projectId: "projetofinances",
+    storageBucket: "projetofinances.appspot.com",
+    messagingSenderId: "742928821641",
+    appId: "1:742928821641:web:28ac5e3cf84a18d3ce8558",
+    measurementId: "G-LQJM4WEYH9"
 };
-
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

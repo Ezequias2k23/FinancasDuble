@@ -4,87 +4,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FINANÇAS</title>
-    <link rel="stylesheet">
+    <style>
+        body {
+            background-color: #bfcba8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .despesas_body17 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .despesash17 {
+            font-size: 30px;
+            color: black;
+        }
+
+        .despesash37 {
+            font-size: 20px;
+            font-style: italic;
+            color: black;
+        }
+
+        .containerdespesas7 {
+            background-color: #f9e9c3;
+            border-radius: 15px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 420px;
+        }
+
+        .button, .buttonr {
+            background-color: #496E4E;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px 0;
+            padding: 12px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+
+        .button:hover, .buttonr:hover {
+            background-color: #3e8e41;
+            color: black;
+        }
+
+        .button:active, .buttonr:active {
+            background-color: #3e8e41;
+            box-shadow: 0 3px #666;
+            transform: translateY(4px);
+        }
+
+        .add-button {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 0;
+            padding: 12px 16px;
+            width: 100%;
+        }
+
+        .add-button:hover {
+            background-color: #45A049;
+        }
+
+        .add-button:active {
+            background-color: #45A049;
+            box-shadow: 0 3px #666;
+            transform: translateY(4px);
+        }
+    </style>
 </head>
-<style>
-    body {
-        background-color: #bfcba8;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        font-size: 15px;
-        font-family: Arial, sans-serif;
-    }
-
-    .despesas_body17 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-    }
-
-    /* Header styles */
-    .despesash17 {
-        font-size: 30px;
-        color: black;
-    }
-
-    .despesash37 {
-        font-size: 20px;
-        font-style: italic;
-        color: black;
-    }
-
-    /* Container for buttons */
-    .containerdespesas7 {
-        background-color: #f9e9c3;
-        border-radius: 15px; /* Aumentado em 20px para todos os lados */
-        margin: 10px; /* Aumentado em 10px para todos os lados */
-        padding: 10px;
-        text-align: center;
-        width: 80%;
-        max-width: 420px; /* Aumentado em 20px para o lado direito */
-    }
-
-    /* Button styles */
-    .button, .buttonr {
-        background-color: #496E4E;
-        color: black;
-        border: none;
-        border-radius: 10px; /* Aumentado em 10px para todos os lados */
-        font-size: 16px; /* Diminuído em 2px */
-        cursor: pointer;
-        margin: 5px 0; /* Diminuído em 5px para cima/baixo */
-        padding: 12px 16px; /* Diminuído em 3px para cima/baixo e em 4px para esquerda/direita */
-        text-align: center;
-        text-decoration: none;
-        display: block;
-        width: 100%;
-    }
-
-    .button:hover, .buttonr:hover {
-        background-color: #3e8e41;
-        color: black;
-    }
-
-    .button:active, .buttonr:active {
-        background-color: #3e8e41;
-        box-shadow: 0 3px #666;
-        transform: translateY(4px);
-    }
-</style>
-
 <body class="despesas_body17">
     <h1 class="despesash17">Despesas</h1>
     <br>
     <h3 class="despesash37">Defina uma categoria para seus gastos.</h3>
-    <div class="containerdespesas7">
+    <div id="expense-types" class="containerdespesas7">
+        <!-- Os botões de tipo de despesa serão gerados aqui -->
         <a class="button" href="DESPESASFACULDADE.html">Faculdade</a>
         <a class="button" href="DESPESASALIMENTACAO.html">Alimentação</a>
         <a class="button" href="DESPESASLAZER.html">Lazer</a>
+        <a class="button" href="DESPESASOUTROS.html">Outros</a> <!-- Renomeado para "Outros" -->
     </div>
+    <button class="add-button" id="add-expense-type">Adicionar Nova Despesa</button>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore.js"></script>
+    <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBs0xzJStSGuUWM1biyyMGTWkaJEzvchLE",
+            authDomain: "projetofinances.firebaseapp.com",
+            projectId: "projetofinances",
+            storageBucket: "projetofinances.appspot.com",
+            messagingSenderId: "742928821641",
+            appId: "1:742928821641:web:28ac5e3cf84a18d3ce8558",
+            measurementId: "G-LQJM4WEYH9"
+        };
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Função para carregar e adicionar tipos de despesa
+        async function loadExpenseTypes() {
+            const expenseTypesDiv = document.getElementById('expense-types');
+            expenseTypesDiv.innerHTML = ''; // Limpa o conteúdo atual
+
+            const snapshot = await db.collection('tipos').get();
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                const button = document.createElement('a');
+                button.href = `#`; // Substitua por um link real ou funcionalidade de página
+                button.className = 'button';
+                button.textContent = data.Tipo;
+                expenseTypesDiv.appendChild(button);
+            });
+        }
+
+        // Adiciona o evento de clique para o botão de adicionar tipo de despesa
+        document.getElementById('add-expense-type').addEventListener('click', () => {
+            window.location.href = 'addnovadespesa.html'; // URL do seu formulário de adição
+        });
+
+        // Carregar os tipos de despesa ao carregar a página
+        window.addEventListener('DOMContentLoaded', loadExpenseTypes);
+    </script>
 </body>
-<script src="script.js"></script>
 </html>

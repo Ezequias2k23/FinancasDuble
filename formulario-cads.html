@@ -86,8 +86,8 @@
             <select id="tipo" name="tipo" class="form-input" required>
                 <option value="" disabled selected>Selecione um tipo</option>
                 <option value="alimentacao">Alimentação</option>
-                <option value="transporte">Transporte</option>
-                <option value="saude">Saúde</option>
+                <option value="faculdade">Faculdade</option>
+                <option value="lazer">Lazer</option>
                 <option value="outros">Outros</option>
             </select>
 
@@ -102,10 +102,26 @@
             dateInput.value = today;
         });
 
-        // Redirect to DESPESAS.html on form submission
+        // Redirect to the corresponding page based on the selected type
         document.getElementById('expense-form').addEventListener('submit', (event) => {
             event.preventDefault(); // Prevent the default form submission
-            window.location.href = 'DESPESAS.html'; // Redirect to DESPESAS.html
+
+            const tipo = document.getElementById('tipo').value; // Get the selected type
+
+            // Define redirection URLs based on selected type
+            const urlMapping = {
+                alimentacao: 'DESPESASALIMENTACAO.html',
+                faculdade: 'DESPESASFACULDADE.html',
+                lazer: 'DESPESASLAZER.html',
+                outros: 'DESPESAOUTROS.html'
+            };
+
+            // Redirect to the corresponding page
+            if (urlMapping[tipo]) {
+                window.location.href = urlMapping[tipo];
+            } else {
+                alert('Tipo de despesa não selecionado corretamente.');
+            }
         });
     </script>
 </body>
