@@ -13,10 +13,8 @@
             margin: 0;
             background-color: #bfcba8;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             text-align: center;
-            font-size: 22px; /* Aumentando a fonte em 10% */
+            font-size: 22px;
         }
 
         #container {
@@ -24,7 +22,7 @@
         }
 
         input {
-            width: 90%; /* Reduzindo a largura em telas menores */
+            width: 90%;
             margin-top: 11px;
             border-radius: 5px;
             padding: 8px;
@@ -51,9 +49,8 @@
         }
 
         @media only screen and (min-width: 600px) {
-            /* Ajustes para telas maiores que 600px de largura */
             input, label, button {
-                width: 50%; /* Reduz a largura em telas maiores */
+                width: 50%;
             }
         }
     </style>
@@ -63,7 +60,7 @@
 <div id="container">
     <h1>Registro de Metas</h1>
     
-    <form action="METAS.html" method="get">
+    <form id="metaForm">
         <div>
             <label for="meta">Nome da Meta:</label><br>
             <input type="text" id="meta" name="meta" placeholder="Tipo de Item - Modelo de Item" required>
@@ -76,6 +73,28 @@
         <button type="submit">Salvar</button>
     </form>
 </div>
+
+<script>
+    document.getElementById("metaForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const nomeMeta = document.getElementById("meta").value;
+        const valorMeta = parseFloat(document.getElementById("valor").value).toFixed(2);
+
+        if (nomeMeta && valorMeta) {
+            const meta = {
+                nome: nomeMeta,
+                valor: valorMeta,
+            };
+
+            const metasSalvas = JSON.parse(localStorage.getItem("metas")) || [];
+            metasSalvas.push(meta);
+            localStorage.setItem("metas", JSON.stringify(metasSalvas));
+
+            window.location.href = "METAS.html";
+        }
+    });
+</script>
 
 </body>
 </html>

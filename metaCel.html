@@ -3,12 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.1">
-    <!-- Aumentando a escala para 1.1 para aumentar todos os itens em cerca de 10% -->
     <title>Acompanhar Meta</title>
-    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <style>
         body {
             display: flex;
@@ -19,14 +14,14 @@
             background-color: #bfcba8;
             flex-direction: column;
             text-align: center;
-            font-size: 1rem; /* Ajustando a fonte para ser responsiva */
+            font-size: 1rem;
         }
 
         #container {
             text-align: center;
-            max-width: 600px; /* Definindo a largura máxima para melhor visualização em telas pequenas */
-            margin: 0 auto; /* Centralizando o conteúdo */
-            padding: 0 10px; /* Adicionando um pouco de espaço nas laterais */
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 10px;
         }
 
         input {
@@ -61,9 +56,8 @@
             font-weight: bold;
         }
 
-        #chartdiv {
-            width: 100%;
-            height: 400px;
+        #adicionar, #subtrair {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -75,160 +69,148 @@
     <form action="METAS.html" method="get">
         <div>
             <label for="meta">Nome da Meta:</label><br>
-            <input type="text" id="meta" name="meta" value="Celular - Redmi Note 12 Pro" readonly>
+            <input type="text" id="meta" name="meta" value="redmi note 12 pro" readonly>
         </div>
         
         <div>
             <label for="valor">Valor Necessário:</label><br>
-            <input type="text" id="valor" name="valor" value="R$ 1.645,69" readonly>
+            <input type="text" id="valor" name="valor" value="R$ 5.000,00" readonly>
         </div>
 
         <div id="valor-atual">
-            Sua meta: R$ 822,84 <!-- Valor dividido por 2 -->
+            Sua meta: R$ <span id="valorMeta">2500,00</span> (Faltam R$ <span id="valorFaltante">2500,00</span> para atingir sua meta - <span id="porcentagem">50%</span>)
         </div>
 
-        <button type="submit">Voltar para Tela Inicial</button>
+        <div>
+            <label for="valor-arrecadado">Valor Arrecadado:</label><br>
+            <input type="number" id="valor-arrecadado" placeholder="Insira valor arrecadado">
+        </div>
+
+        <div>
+            <button type="button" id="adicionar">Adicionar</button>
+            <button type="button" id="subtrair">Subtrair</button>
+        </div>
         
-        <!-- Chart container -->
-        <div id="chartdiv" style="width: 100%; height: 400px;"></div>
+        <button type="submit">Voltar para Tela Inicial</button>
     </form>
 </div>
 
-<!-- Chart code -->
 <script>
-    am5.ready(function() {
+// Configuração do IndexedDB para salvar os dados de arrecadação
+const dbName = "metaDB";
+const storeName = "metasArrecadadas";
 
-        // Create root element
-        var root = am5.Root.new("chartdiv");
+let db;
 
-        // Set themes
-        root.setThemes([am5themes_Animated.new(root)]);
+const openRequest = indexedDB.open(dbName, 1);
 
-        // Create chart
-        var chart = root.container.children.push(
-            am5radar.RadarChart.new(root, {
-                panX: false,
-                panY: false,
-                startAngle: 180,
-                endAngle: 360
-            })
-        );
+openRequest.onupgradeneeded = function(e) {
+    db = e.target.result;
+    if (!db.objectStoreNames.contains(storeName)) {
+        db.createObjectStore(storeName, { keyPath: "id" });
+    }
+};
 
-        chart.getNumberFormatter().set("numberFormat", "#'%'");
+openRequest.onsuccess = function(e) {
+    db = e.target.result;
+    carregarMetaDoDB(); // Carregar o valor ao iniciar
+};
 
-        // Create axis and its renderer
-        var axisRenderer = am5radar.AxisRendererCircular.new(root, {
-            innerRadius: -40
-        });
+openRequest.onerror = function(e) {
+    console.error("Erro ao abrir o IndexedDB", e);
+};
 
-        axisRenderer.grid.template.setAll({
-            stroke: root.interfaceColors.get("background"),
-            visible: true,
-            strokeOpacity: 0.8
-        });
+// Função para salvar o valor no IndexedDB
+function salvarNoIndexedDB(id, valor) {
+    const transaction = db.transaction([storeName], "readwrite");
+    const store = transaction.objectStore(storeName);
 
-        var xAxis = chart.xAxes.push(
-            am5xy.ValueAxis.new(root, {
-                maxDeviation: 0,
-                min: 0,
-                max: 100,
-                strictMinMax: true,
-                renderer: axisRenderer
-            })
-        );
+    const request = store.get(id); 
+    request.onsuccess = function(e) {
+        const data = e.target.result;
+        if (data) {
+            data.valorMeta = valor; // Atualiza o valor
+            store.put(data); // Atualiza o valor no banco
+        } else {
+            store.add({ id: id, valorMeta: valor }); // Adiciona nova meta
+        }
+    };
+    request.onerror = function(e) {
+        console.error("Erro ao salvar no IndexedDB", e);
+    };
+}
 
-        var axisDataItem = xAxis.makeDataItem({});
+// Função para carregar o valor arrecadado do IndexedDB
+function carregarMetaDoDB() {
+    const metaNome = document.getElementById("meta").value;
+    const transaction = db.transaction([storeName], "readonly");
+    const store = transaction.objectStore(storeName);
 
-        var clockHand = am5radar.ClockHand.new(root, {
-            pinRadius: 50,
-            radius: am5.percent(100),
-            innerRadius: 50,
-            bottomWidth: 0,
-            topWidth: 0
-        });
+    const request = store.get(metaNome); 
+    request.onsuccess = function(e) {
+        const data = e.target.result;
+        if (data) {
+            valorMeta = data.valorMeta || 2500.00; // Carrega o valor ou valor padrão
+        } else {
+            valorMeta = 2500.00; // Valor padrão
+        }
+        document.getElementById("valorMeta").textContent = valorMeta.toFixed(2);
+        atualizarPorcentagem(); // Atualiza porcentagem e valores faltantes
+    };
+    request.onerror = function(e) {
+        console.error("Erro ao carregar dados do IndexedDB", e);
+    };
+}
 
-        clockHand.pin.setAll({
-            fillOpacity: 0,
-            strokeOpacity: 0.5,
-            stroke: am5.color(0x000000),
-            strokeWidth: 1,
-            strokeDasharray: [2, 2]
-        });
+// Variáveis do valor de arrecadação
+let valorMeta = 2500.00;
+const valorNecessario = 5000.00;
+const valorMetaElement = document.getElementById("valorMeta");
+const valorArrecadadoInput = document.getElementById("valor-arrecadado");
 
-        clockHand.hand.setAll({
-            fillOpacity: 0,
-            strokeOpacity: 0.5,
-            stroke: am5.color(0x000000),
-            strokeWidth: 0.5
-        });
+// Função para atualizar porcentagem e valores faltantes
+function atualizarPorcentagem() {
+    const porcentagem = (valorMeta / valorNecessario) * 100;
+    const valorFaltante = valorNecessario - valorMeta;
 
-        var bullet = axisDataItem.set(
-            "bullet",
-            am5xy.AxisBullet.new(root, {
-                sprite: clockHand
-            })
-        );
+    document.getElementById("valorFaltante").textContent = valorFaltante.toFixed(2);
+    document.getElementById("porcentagem").textContent = porcentagem.toFixed(2) + "%";
 
-        xAxis.createAxisRange(axisDataItem);
+    if (valorMeta >= valorNecessario) {
+        alert("Parabéns! Agora você pode aproveitar seu produto!");
+    }
+}
 
-        var label = chart.radarContainer.children.push(
-            am5.Label.new(root, {
-                centerX: am5.percent(50),
-                textAlign: "center",
-                centerY: am5.percent(50),
-                fontSize: "1.5em"
-            })
-        );
+// Função para atualizar o valor da meta
+function atualizarMeta(valor) {
+    if (valorMeta + valor > valorNecessario) {
+        valor = valorNecessario - valorMeta; // Ajusta o valor para não ultrapassar o necessário
+    }
+    valorMeta += valor;
+    if (valorMeta < 0) valorMeta = 0; // Não permitir valor negativo
+    valorMetaElement.textContent = valorMeta.toFixed(2);
+    salvarNoIndexedDB("Viagem - Paris", valorMeta); // Salva no IndexedDB com nome da meta como ID
+    atualizarPorcentagem(); // Atualiza porcentagem e valores faltantes
+}
 
-        axisDataItem.set("value", 50);
-        bullet.get("sprite").on("rotation", function () {
-            var value = axisDataItem.get("value");
-            label.set("text", Math.round(value).toString() + "%");
-        });
+// Adicionar valor arrecadado
+document.getElementById("adicionar").addEventListener("click", () => {
+    const valor = parseFloat(valorArrecadadoInput.value);
+    if (!isNaN(valor) && valor > 0) {
+        atualizarMeta(valor);
+        valorArrecadadoInput.value = ''; // Limpar campo
+    }
+});
 
-        chart.bulletsContainer.set("mask", undefined);
-
-        var colorSet = am5.ColorSet.new(root, {});
-
-        var axisRange0 = xAxis.createAxisRange(
-            xAxis.makeDataItem({
-                above: true,
-                value: 0,
-                endValue: 50
-            })
-        );
-
-        axisRange0.get("axisFill").setAll({
-            visible: true,
-            fill: colorSet.getIndex(0)
-        });
-
-        axisRange0.get("label").setAll({
-            forceHidden: true
-        });
-
-        var axisRange1 = xAxis.createAxisRange(
-            xAxis.makeDataItem({
-                above: true,
-                value: 50,
-                endValue: 100
-            })
-        );
-
-        axisRange1.get("axisFill").setAll({
-            visible: true,
-            fill: colorSet.getIndex(4)
-        });
-
-        axisRange1.get("label").setAll({
-            forceHidden: true
-        });
-
-        // Make stuff animate on load
-        chart.appear(1000, 100);
-    });
+// Subtrair valor arrecadado
+document.getElementById("subtrair").addEventListener("click", () => {
+    const valor = parseFloat(valorArrecadadoInput.value);
+    if (!isNaN(valor) && valor > 0) {
+        atualizarMeta(-valor);
+        valorArrecadadoInput.value = ''; // Limpar campo
+    }
+});
 </script>
-
 
 </body>
 </html>
