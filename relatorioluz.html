@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Luz</title>
+    <link rel="stylesheet" href="styleE.css">
+</head>
+<body class="bodyrelatorio">
+    <header>
+        <h1 class="relatorioh1">Relatório Luz</h1>
+        <h3 class="relatorioh3">Aqui estão seus relatórios salvos para a categoria Luz</h3>
+    </header>
+
+    <div class="containerrelatorio">
+        <ul id="listaRelatorios"></ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const relatorios = JSON.parse(localStorage.getItem('luz')) || [];
+            const listaRelatorios = document.getElementById('listaRelatorios');
+
+            if (relatorios.length === 0) {
+                listaRelatorios.innerHTML = '<li>Nenhum relatório salvo ainda.</li>';
+            } else {
+                relatorios.forEach(relatorio => {
+                    const li = document.createElement('li');
+                    li.textContent = relatorio;
+                    listaRelatorios.appendChild(li);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

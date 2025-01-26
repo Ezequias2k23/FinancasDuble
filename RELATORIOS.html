@@ -4,106 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatório</title>
-    <link rel="stylesheet" href="styleE.css">
-</head>
-<style>
-    .bodyrelatorio {
-        background: #bfcba8;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-    }
-
-    /* Estilos para o cabeçalho */
-    .relatorioh1 {
-        text-align: center;
-        font-size: 36px;
-        color: black;
-    }
-
-    /* Estilos para a área de texto do dia */
-    .day {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        width: 100%; /* Alterado para ocupar 100% da largura em telas pequenas */
-        text-align: center;
-    }
-
-    textarea {
-        width: 100%;
-        height: 80px;
-        padding: 10px;
-        border: 1px solid black;
-        border-radius: 5px;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        box-sizing: border-box;
-        margin: 0;
-    }
-
-    .relatorioh3 {
-        font-size: 18px;
-        font-style: italic;
-        color: black;
-        margin: 0;
-    }
-
-    .containerrelatorio {
-        margin: 0;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 10px;
-        text-align: center;
-        background-color: #f9e9c3;
-        border-radius: 5px;
-    }
-
-    .buttonr {
-        background-color: #496E4E;
-        color: black;
-        border: none;
-        border-radius: 5px;
-        font-size: 18px;
-        cursor: pointer;
-        padding: 10px 20px;
-        margin: 10px;
-    }
-
-    .buttonr:hover {
-        background-color: #345038;
-    }
-
-    /* Adicionando regras de mídia para ajustar em telas menores */
-    @media only screen and (max-width: 600px) {
-        .day {
-            width: 100%; /* Ocupa 100% da largura em telas menores */
+    <style>
+        .bodyrelatorio {
+            background: #bfcba8;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
-
+        .relatorioh1 {
+            text-align: center;
+            font-size: 36px;
+            color: black;
+        }
+        .day {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
         textarea {
             width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin: 0;
         }
-    }
-</style>
+        .relatorioh3 {
+            font-size: 18px;
+            font-style: italic;
+            color: black;
+            margin: 0;
+        }
+        .containerrelatorio {
+            margin: 0;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            text-align: center;
+            background-color: #f9e9c3;
+            border-radius: 5px;
+        }
+        .buttonr {
+            background-color: #496E4E;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+        .buttonr:hover {
+            background-color: #345038;
+        }
+        @media only screen and (max-width: 600px) {
+            .day {
+                width: 100%;
+            }
+            textarea {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
 <body class="bodyrelatorio">
     <header>
         <h1 class="relatorioh1">Relatório</h1>
         <h3 class="relatorioh3">Resumo dos seus gastos e despesas</h3>
     </header>
-
     <div class="day">
-        <textarea placeholder="Digite seu relatório aqui"></textarea>
+        <textarea id="relatorioInput" placeholder="Digite seu relatório aqui"></textarea>
     </div>
-
     <div class="containerrelatorio">
-        <br><br>
         <h3 class="relatorioh3">Escolha uma categoria e obtenha seu relatório</h3>
-        <button class="buttonr">Luz</button>
-        <button class="buttonr">Água</button>
-        <button class="buttonr">Internet</button>
+        <button class="buttonr" onclick="adicionarRelatorio('luz')">Luz</button>
+        <button class="buttonr" onclick="adicionarRelatorio('agua')">Água</button>
+        <button class="buttonr" onclick="adicionarRelatorio('internet')">Internet</button>
     </div>
+    <script>
+        function adicionarRelatorio(tipo) {
+            const input = document.getElementById('relatorioInput').value.trim();
+            if (input === '') {
+                alert('Por favor, insira um texto no relatório antes de continuar.');
+                return;
+            }
+            const confirmacao = confirm(`Você tem certeza que deseja adicionar isso no relatório de ${tipo}?`);
+            if (confirmacao) {
+                // Salva o conteúdo no localStorage
+                const relatorios = JSON.parse(localStorage.getItem(tipo)) || [];
+                relatorios.push(input);
+                localStorage.setItem(tipo, JSON.stringify(relatorios));
+                // Redireciona para a página correspondente
+                window.location.href = `relatorio${tipo}.html`;
+            }
+        }
+    </script>
 </body>
-<script src="script.js"></script>
 </html>
